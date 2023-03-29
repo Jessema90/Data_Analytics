@@ -33,9 +33,9 @@ config = {
     #'start': datetime.date(datetime(2022, 7, 5)),
     #'stop': datetime.date(datetime(2021, 7, 10)),
     'bucket': "NODE_RED_DATA",
-    'org': "bsjessem@unal.edu.co",
+    'org': "xxxxxxxxxxxx@unal.edu.co",
     'url': "https://eu-central-1-1.aws.cloud2.influxdata.com",
-    'token': "KQr0l07umK1Z-ur3z7UjADORj6qCEZbZ6TISpjV56XFXn3AuYquuyM3tyOTXuc5qnT7_LuPq4z1OS36m9tCErA==",
+    'token': "xxxxxxxxxxxxxxxxxxx",
     'measurement-name': "PM02",
     # PM02 is the name of the second group of solar inverters
     'measurement-name_2': "IRRADIANCE"
@@ -51,14 +51,14 @@ client = InfluxDBClient(
 query_api = client.query_api()
 PM02_DF_V1 = query_api.query_data_frame(
     f'from(bucket:"{config["bucket"]}")'
-        f'|> range(start: 2022-07-24T00:00:00Z, stop: 2022-12-31T00:00:00Z) '
+        f'|> range(start: 2022-07-24T00:00:00Z, stop: 2023-01-15T00:00:00Z) '
         '|> filter(fn: (r) =>'
             f' r._measurement == "{config["measurement-name"]}"'
         ') '
 )
 IRRADIANCE_DF_V1=query_api.query_data_frame(
     f'from(bucket:"{config["bucket"]}")'
-        f'|> range(start: 2022-07-24T00:00:00Z, stop: 2022-12-31T00:00:00Z) '
+        f'|> range(start: 2022-07-24T00:00:00Z, stop: 2023-01-15T00:00:00Z) '
         '|> filter(fn: (r) =>'
             f' r._measurement == "{config["measurement-name_2"]}"'
         ') '
